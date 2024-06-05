@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AspNetCoreNLayeredArchitecture.Core;
-public class Category : BaseEntity
+namespace AspNetCoreNLayeredArchitecture.Core.DTOs;
+public class CategoryDto : BaseEntityDto
 {
 	public string Name { get; set; }
-	public ICollection<Product> Products { get; set; }	
 }
