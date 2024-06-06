@@ -8,6 +8,10 @@ using AspNetCoreNLayeredArchitecture.Repository.Repositories;
 using AspNetCoreNLayeredArchitecture.Repository.UnitOfWorks;
 using AspNetCoreNLayeredArchitecture.Service.Mapping;
 using AspNetCoreNLayeredArchitecture.Service.Services;
+using AspNetCoreNLayeredArchitecture.Service.Validations;
+using AspNetCoreNLayeredArchitecture.WebAPI.Filters;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace AspNetCoreNLayeredArchitecture.WebAPI;
@@ -20,7 +24,11 @@ public class Program
 
 		// Add services to the container.
 
-		builder.Services.AddControllers();
+		builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute())).AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
+		builder.Services.Configure<ApiBehaviorOptions>(options =>
+		{
+			options.SuppressModelStateInvalidFilter = true;
+		});
 		// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 		builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 		builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
