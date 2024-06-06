@@ -43,8 +43,8 @@ public class Service<T> : IService<T> where T : class
 
 	public async Task<T> AddAsync(T entity)
 	{
-		_repository.AddAsync(entity);
-		_unitOfWork.CommitAsync();
+		await _repository.AddAsync(entity);
+		await _unitOfWork.CommitAsync();
 		return entity;
 	}
 
@@ -58,7 +58,7 @@ public class Service<T> : IService<T> where T : class
 	public async Task UpdateAsync(T entity)
 	{
 		_repository.Update(entity);
-		_unitOfWork.CommitAsync();
+		await _unitOfWork.CommitAsync();
 	}
 
 	public async Task DeleteAsync(T entity)
