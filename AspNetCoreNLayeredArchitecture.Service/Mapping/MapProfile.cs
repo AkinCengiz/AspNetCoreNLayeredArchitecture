@@ -17,5 +17,6 @@ public class MapProfile : Profile
 		CreateMap<ProductFeature, ProductFeatureDto>();
 		CreateMap<ProductUpdateDto, Product>();
 		CreateMap<Product, ProductWithCategoryDto>();
+		CreateMap<Category, CategoryWithProductsDto>();
 	}
 }

@@ -8,4 +8,5 @@ using AspNetCoreNLayeredArchitecture.Core.Models;
 namespace AspNetCoreNLayeredArchitecture.Core.Repositories;
 public interface ICategoryRepository : IGenericRepository<Category>
 {
+	Task<Category> GetSingleCategoryByIdWithProductsAsync(int categoryId);
 }
